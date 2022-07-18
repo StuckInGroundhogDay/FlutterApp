@@ -1,10 +1,10 @@
-class Temperature {
+class IntervalTemperatureUnit {
   int averageTemperature;
   int minTemperature;
   int maxTemperature;
   int feelsLike;
 
-  Temperature({
+  IntervalTemperatureUnit({
     required this.averageTemperature,
     required this.minTemperature,
     required this.maxTemperature,

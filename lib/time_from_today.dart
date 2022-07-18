@@ -5,7 +5,7 @@ class TimeFromToday {
     return Jiffy().add(days: index).E;
   }
 
-  static String getDayOfMonth(int index) {
+  static String getDate(int index) {
     return Jiffy().add(days: index).MMMd;
   }
 }

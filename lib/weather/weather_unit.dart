@@ -1,12 +1,12 @@
-import 'package:fl_app/weather/weather_condition.dart';
-import 'package:fl_app/weather/temperature.dart';
+import 'package:fl_app/weather/weather_condition_unit.dart';
 
-class WeatherUnit {
-  Temperature temperature;
-  WeatherCondition weatherCondition;
+class WeatherUnit<T> {
+  // temperatureUnit MUST receive an instance of CurrentTemperatureUnit or IntervalTemperatureUnit
+  T temperatureUnit;
+  WeatherConditionUnit weatherConditionUnit;
 
   WeatherUnit({
-    required this.temperature,
-    required this.weatherCondition,
+    required this.temperatureUnit,
+    required this.weatherConditionUnit,
   });
 }
