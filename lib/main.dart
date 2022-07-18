@@ -1,8 +1,8 @@
 import 'package:fl_app/weather/weather_data.dart';
+import 'package:fl_app/widgets/current_weather.dart';
 import 'package:fl_app/widgets/day_interval.dart';
 import 'package:fl_app/widgets/header.dart';
 import 'package:flutter/material.dart';
-import 'package:fl_app/widgets/current_weather.dart';
 
 void main() => runApp(const MyApp());
 
@@ -49,7 +49,10 @@ class _MyAppState extends State<MyApp> {
                 ),
                 onSubmitted: _onSubmitted,
               ),
-              CurrentWeather(city: weatherData.city, weatherUnit: weatherData.dayIntervals[0]),
+              CurrentWeather(
+                city: weatherData.city,
+                weatherUnit: weatherData.dayIntervals[0],
+              ),
               const Header(),
               Column(
                 children: [

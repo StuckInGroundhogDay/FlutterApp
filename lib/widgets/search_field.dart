@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 class SearchField extends StatelessWidget {
-
   const SearchField({Key? key}) : super(key: key);
 
   @override
