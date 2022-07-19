@@ -1,11 +1,13 @@
 import 'package:fl_app/time_from_today.dart';
+import 'package:fl_app/weather/interval_temperature_unit.dart';
 import 'package:fl_app/weather/weather_unit.dart';
 import 'package:flutter/material.dart';
 
-class DayInterval extends StatelessWidget {
-  final WeatherUnit weatherUnit;
+class DayIntervalWidget extends StatelessWidget {
+  final WeatherUnit<IntervalTemperatureUnit> weatherUnit;
 
-  const DayInterval({Key? key, required this.weatherUnit}) : super(key: key);
+  const DayIntervalWidget({Key? key, required this.weatherUnit})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {

@@ -11,9 +11,9 @@ class WeatherData {
 
   String city;
 
-  WeatherUnit? currentWeather;
-  List<WeatherUnit> threeHourIntervals = [];
-  List<WeatherUnit> dayIntervals = [];
+  late WeatherUnit<CurrentTemperatureUnit> currentWeather;
+  List<WeatherUnit<IntervalTemperatureUnit>> threeHourIntervals = [];
+  List<WeatherUnit<IntervalTemperatureUnit>> dayIntervals = [];
 
   WeatherData({this.city = defaultCity}) {
     receiveDataFromSever(city);
@@ -40,7 +40,7 @@ class WeatherData {
 
     for (int i = 0; i < 40; i++) {
       threeHourIntervals.add(
-        WeatherUnit(
+        WeatherUnit<IntervalTemperatureUnit>(
           temperatureUnit: IntervalTemperatureUnit(
             averageTemperature: jsonDays[i]['main']['temp'].toInt(),
             minTemperature: jsonDays[i]['main']['temp_min'].toInt(),
@@ -57,7 +57,7 @@ class WeatherData {
       // TO DO ИСПРАВИТЬ КОД
       if (i % 8 == 7) {
         dayIntervals.add(
-          WeatherUnit(
+          WeatherUnit<IntervalTemperatureUnit>(
             temperatureUnit: IntervalTemperatureUnit(
               averageTemperature: jsonDays[i]['main']['temp'].toInt(),
               minTemperature: jsonDays[i]['main']['temp_min'].toInt(),
@@ -89,7 +89,7 @@ class WeatherData {
 
     final jsonDays2 = json2['list'];
 
-    currentWeather = WeatherUnit(
+    currentWeather = WeatherUnit<CurrentTemperatureUnit>(
       temperatureUnit: CurrentTemperatureUnit(
         currentTemperature: jsonDays2[0]['main']['temp'].toInt(),
         feelsLike: jsonDays2[0]['main']['feels_like'].toInt(),

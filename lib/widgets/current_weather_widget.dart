@@ -1,11 +1,12 @@
+import 'package:fl_app/weather/current_temperature_unit.dart';
 import 'package:fl_app/weather/weather_unit.dart';
 import 'package:flutter/material.dart';
 
-class CurrentWeather extends StatelessWidget {
+class CurrentWeatherWidget extends StatelessWidget {
   final String city;
-  final WeatherUnit weatherUnit;
+  final WeatherUnit<CurrentTemperatureUnit> weatherUnit;
 
-  const CurrentWeather({
+  const CurrentWeatherWidget({
     Key? key,
     required this.city,
     required this.weatherUnit,
@@ -39,7 +40,7 @@ class CurrentWeather extends StatelessWidget {
                 width: 80,
               ),
               Text(
-                '${weatherUnit.temperatureUnit.averageTemperature}°',
+                '${weatherUnit.temperatureUnit.currentTemperature}°',
                 style: const TextStyle(fontSize: 60, color: Colors.white),
               ),
             ],
