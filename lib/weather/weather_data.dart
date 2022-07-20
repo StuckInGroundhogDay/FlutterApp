@@ -10,6 +10,7 @@ class WeatherData {
   static const String defaultCity = "Omsk";
 
   String city;
+  bool isReceivedForTheFirstTime = false;
 
   late WeatherUnit<CurrentTemperatureUnit> currentWeather;
   List<WeatherUnit<IntervalTemperatureUnit>> threeHourIntervals = [];
@@ -22,6 +23,8 @@ class WeatherData {
   Future receiveDataFromSever(String city) async {
     threeHourIntervals = [];
     dayIntervals = [];
+
+    this.city = city;
 
     final parametersForIntervals = {
       'q': this.city,
@@ -87,20 +90,18 @@ class WeatherData {
 
     final json2 = jsonDecode(response2.body);
 
-    final jsonDays2 = json2['list'];
-
     currentWeather = WeatherUnit<CurrentTemperatureUnit>(
       temperatureUnit: CurrentTemperatureUnit(
-        currentTemperature: jsonDays2[0]['main']['temp'].toInt(),
-        feelsLike: jsonDays2[0]['main']['feels_like'].toInt(),
+        currentTemperature: json2['main']['temp'].toInt(),
+        feelsLike: json2['main']['feels_like'].toInt(),
       ),
       weatherConditionUnit: WeatherConditionUnit(
-        id: jsonDays2[0]['weather'][0]['id'].toInt(),
-        condition: jsonDays2[0]['weather'][0]['main'],
-        description: jsonDays2[0]['weather'][0]['description'],
+        id: json2['weather'][0]['id'].toInt(),
+        condition: json2['weather'][0]['main'],
+        description: json2['weather'][0]['description'],
       ),
     );
 
-    this.city = city;
+    isReceivedForTheFirstTime = true;
   }
 }

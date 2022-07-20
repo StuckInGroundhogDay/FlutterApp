@@ -13,12 +13,9 @@ class HomePageWidget extends StatefulWidget {
 class _HomePageWidgetState extends State<HomePageWidget> {
   WeatherData weatherData = WeatherData();
 
-
   void _onSubmitted(String city) {
     if (city != "") {
-      weatherData.receiveDataFromSever(city);
-
-      Future.delayed(const Duration(milliseconds: 2000), () {
+      weatherData.receiveDataFromSever(city).then((value) {
         setState(() {});
       });
     }
@@ -26,36 +23,62 @@ class _HomePageWidgetState extends State<HomePageWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Weather Forecast',
-      home: Scaffold(
-        backgroundColor: Colors.black87,
-        body: SingleChildScrollView(
-          child: Column(
-            children: [
-              TextField(
-                keyboardAppearance: Brightness.dark,
-                style: const TextStyle(color: Colors.white),
-                cursorColor: Colors.white,
-                decoration: const InputDecoration(
-                  border: InputBorder.none,
-                  icon: Icon(Icons.login, color: Colors.white),
-                  hintText: "Search city",
-                  hintStyle: TextStyle(color: Colors.white),
-                  fillColor: Colors.black12,
-                  filled: true,
+    if (weatherData.isReceivedForTheFirstTime) {
+      return MaterialApp(
+        title: 'Weather Forecast',
+        home: Scaffold(
+          backgroundColor: Colors.black87,
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  keyboardAppearance: Brightness.dark,
+                  style: const TextStyle(color: Colors.white),
+                  cursorColor: Colors.white,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    icon: Icon(Icons.login, color: Colors.white),
+                    hintText: "Search city",
+                    hintStyle: TextStyle(color: Colors.white),
+                    fillColor: Colors.black12,
+                    filled: true,
+                  ),
+                  onSubmitted: _onSubmitted,
                 ),
-                onSubmitted: _onSubmitted,
-              ),
-              CurrentWeatherWidget(
-                city: weatherData.city,
-                weatherUnit: weatherData.currentWeather,
-              ),
-              DailyForecastWidget(dayIntervals: weatherData.dayIntervals),
-            ],
+                CurrentWeatherWidget(
+                  city: weatherData.city,
+                  weatherUnit: weatherData.currentWeather,
+                ),
+                DailyForecastWidget(dayIntervals: weatherData.dayIntervals),
+              ],
+            ),
           ),
         ),
-      ),
-    );
+      );
+    } else {
+      weatherData.receiveDataFromSever(WeatherData.defaultCity).then((value) {
+        setState(() {});
+      });
+      return MaterialApp(
+        title: 'Weather Forecast',
+        home: Scaffold(
+          backgroundColor: Colors.black87,
+          body: SingleChildScrollView(
+            child: Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
+              width: double.infinity,
+              height: 45,
+              padding: const EdgeInsets.all(2.5),
+              alignment: Alignment.center,
+              child: const Text(
+                'Loading',
+                style: TextStyle(fontSize: 25, color: Colors.white),
+              ),
+            ),
+          ),
+        ),
+      );
+    }
   }
 }
