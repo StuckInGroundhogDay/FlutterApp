@@ -23,8 +23,8 @@ class DayIntervalWidget extends StatelessWidget {
             weatherUnit.weatherConditionUnit.condition,
             style: const TextStyle(fontSize: 15, color: Colors.white),
           ),
-          const Image(
-            image: AssetImage('assets/images/scattered_clouds.png'),
+          Image(
+            image: AssetImage(weatherUnit.weatherConditionUnit.path),
             height: 22,
             width: 22,
           ),

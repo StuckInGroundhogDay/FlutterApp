@@ -34,8 +34,8 @@ class CurrentWeatherWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Image(
-                image: AssetImage('assets/images/scattered_clouds.png'),
+              Image(
+                image: AssetImage(weatherUnit.weatherConditionUnit.path),
                 height: 80,
                 width: 80,
               ),

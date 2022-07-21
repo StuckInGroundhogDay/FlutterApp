@@ -57,7 +57,7 @@ class WeatherData {
           ),
         ),
       );
-      // TO DO ИСПРАВИТЬ КОД
+      // TODO ИСПРАВИТЬ КОД
       if (i % 8 == 7) {
         dayIntervals.add(
           WeatherUnit<IntervalTemperatureUnit>(
@@ -77,7 +77,7 @@ class WeatherData {
       }
     }
 
-    // TO DO ЗАРЕФАКТИТЬ КОД
+    // TODO ЗАРЕФАКТИТЬ КОД
     final parametersForCurrentWeather = {
       'q': this.city,
       'appid': '9722d722e73183183c66f09eaaf34865',
