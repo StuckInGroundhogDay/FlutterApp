@@ -16,7 +16,6 @@ class CurrentWeatherWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
       width: double.infinity,
       padding: const EdgeInsets.all(2.5),
       child: Column(
@@ -24,36 +23,32 @@ class CurrentWeatherWidget extends StatelessWidget {
         children: [
           Text(
             city,
-            style: const TextStyle(fontSize: 35, color: Colors.white),
+            style: const TextStyle(fontSize: 40, color: Colors.white),
             textAlign: TextAlign.left,
           ),
           const Text(
             'Right now',
-            style: TextStyle(fontSize: 15, color: Colors.white),
+            style: TextStyle(fontSize: 17, color: Colors.white),
             textAlign: TextAlign.left,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              SizedBox(
+              Container(
                 width: 70,
                 height: 70,
-                child: Padding(
-                  padding: const EdgeInsets.all(5.0),
-                  child: SvgPicture.asset(
-                    weatherUnit.weatherConditionUnit.path,
-                  ),
-                ),
+                padding: const EdgeInsets.all(5.0),
+                child: SvgPicture.asset(weatherUnit.weatherConditionUnit.path),
               ),
               Text(
                 '${weatherUnit.temperatureUnit.currentTemperature}°',
-                style: const TextStyle(fontSize: 60, color: Colors.white),
+                style: const TextStyle(fontSize: 70, color: Colors.white),
               ),
             ],
           ),
           Text(
             'Feels like ${weatherUnit.temperatureUnit.feelsLike}°, ${weatherUnit.weatherConditionUnit.description}.',
-            style: const TextStyle(fontSize: 15, color: Colors.white),
+            style: const TextStyle(fontSize: 17, color: Colors.white),
           ),
         ],
       ),

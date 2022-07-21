@@ -14,20 +14,19 @@ class DailyForecastWidget extends StatelessWidget {
     List<DayIntervalWidget> dayIntervalWidgets = [];
 
     for (int i = 0; i < 5; i++) {
-      dayIntervalWidgets.add(DayIntervalWidget(weatherUnit: dayIntervals[i]));
+      dayIntervalWidgets
+          .add(DayIntervalWidget(weatherUnit: dayIntervals[i], dayIndex: i));
     }
 
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 2.0),
           width: double.infinity,
           height: 45,
-          padding: const EdgeInsets.all(2.5),
           alignment: Alignment.center,
           child: const Text(
-            'Day weather forecast',
-            style: TextStyle(fontSize: 25, color: Colors.white),
+            'Weather Forecast',
+            style: TextStyle(fontSize: 27, color: Colors.white),
           ),
         ),
         Column(children: dayIntervalWidgets),

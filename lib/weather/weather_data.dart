@@ -16,9 +16,7 @@ class WeatherData {
   List<WeatherUnit<IntervalTemperatureUnit>> threeHourIntervals = [];
   List<WeatherUnit<IntervalTemperatureUnit>> dayIntervals = [];
 
-  WeatherData({this.city = defaultCity}) {
-    receiveDataFromSever(city);
-  }
+  WeatherData({this.city = defaultCity});
 
   Future receiveDataFromSever(String city) async {
     threeHourIntervals = [];
@@ -77,7 +75,7 @@ class WeatherData {
       }
     }
 
-    // TODO ЗАРЕФАКТИТЬ КОД
+    // TODO ЗАРЕФАКТОРИТЬ КОД
     final parametersForCurrentWeather = {
       'q': this.city,
       'appid': '9722d722e73183183c66f09eaaf34865',
