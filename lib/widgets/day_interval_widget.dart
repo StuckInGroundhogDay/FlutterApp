@@ -2,6 +2,7 @@ import 'package:fl_app/time_from_today.dart';
 import 'package:fl_app/weather/interval_temperature_unit.dart';
 import 'package:fl_app/weather/weather_unit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class DayIntervalWidget extends StatelessWidget {
   final WeatherUnit<IntervalTemperatureUnit> weatherUnit;
@@ -23,10 +24,15 @@ class DayIntervalWidget extends StatelessWidget {
             weatherUnit.weatherConditionUnit.condition,
             style: const TextStyle(fontSize: 15, color: Colors.white),
           ),
-          Image(
-            image: AssetImage(weatherUnit.weatherConditionUnit.path),
-            height: 22,
-            width: 22,
+          SizedBox(
+            width: 28,
+            height: 28,
+            child: Padding(
+              padding: const EdgeInsets.all(4.0),
+              child: SvgPicture.asset(
+                weatherUnit.weatherConditionUnit.path,
+              ),
+            ),
           ),
           Text(
             '${weatherUnit.temperatureUnit.averageTemperature}° ${TimeFromToday.getDate(0)} ${TimeFromToday.getDayOfWeek(0)}',

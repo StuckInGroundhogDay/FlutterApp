@@ -1,6 +1,7 @@
 import 'package:fl_app/weather/current_temperature_unit.dart';
 import 'package:fl_app/weather/weather_unit.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
 class CurrentWeatherWidget extends StatelessWidget {
   final String city;
@@ -34,10 +35,15 @@ class CurrentWeatherWidget extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image(
-                image: AssetImage(weatherUnit.weatherConditionUnit.path),
-                height: 80,
-                width: 80,
+              SizedBox(
+                width: 70,
+                height: 70,
+                child: Padding(
+                  padding: const EdgeInsets.all(5.0),
+                  child: SvgPicture.asset(
+                    weatherUnit.weatherConditionUnit.path,
+                  ),
+                ),
               ),
               Text(
                 '${weatherUnit.temperatureUnit.currentTemperature}°',
